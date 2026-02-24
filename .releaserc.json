@@ -1,0 +1,205 @@
+{
+  "branches": [
+    {
+      "name": "main"
+    },
+    {
+      "name": "develop",
+      "prerelease": "next"
+    }
+  ],
+  "preset": "angular",
+  "tagFormat": "${version}",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/git",
+    "@semantic-release/github",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/exec"
+    ]
+  ],
+  "verifyConditions": [
+    "@semantic-release/git",
+    "@semantic-release/github"
+  ],
+  "analyzeCommits": [
+    {
+      "path": "@semantic-release/commit-analyzer",
+      "releaseRules": [
+        {
+          "type": "fix",
+          "release": "patch"
+        },
+        {
+          "type": "docs",
+          "release": "patch"
+        },
+        {
+          "type": "refacor",
+          "release": "patch"
+        },
+        {
+          "type": "perf",
+          "release": "patch"
+        },
+        {
+          "type": "build",
+          "release": "patch"
+        },
+        {
+          "type": "ci",
+          "release": "patch"
+        },
+        {
+          "type": "chore",
+          "release": "patch"
+        },
+        {
+          "type": "revert",
+          "release": "patch"
+        },
+        {
+          "type": "major",
+          "release": "major"
+        },
+        {
+          "type": "feat",
+          "release": "patch"
+        },
+        {
+          "type": "hotfix",
+          "release": "patch"
+        },
+        {
+          "type": "patch",
+          "release": "patch"
+        },
+        {
+          "type": "minor",
+          "release": "minor"
+        },
+        {
+          "type": "breaking",
+          "release": "major"
+        }
+      ]
+    }
+  ],
+  "generateNotes": [
+    {
+      "path": "@semantic-release/release-notes-generator",
+      "writerOpts": {
+        "groupBy": "type",
+        "commitGroupsSort": [
+          "feat",
+          "major",
+          "minor",
+          "patch",
+          "breaking",
+          "hotfix",
+          "chore",
+          "build",
+          "ci",
+          "docs",
+          "style",
+          "refacotr",
+          "test",
+          "perf",
+          "fix"
+        ],
+        "commitsSort": "header"
+      },
+      "types": [
+        {
+          "type": "feat"
+        },
+        {
+          "section": "Features"
+        },
+        {
+          "type": "hotfix"
+        },
+        {
+          "section": "Bug Fixes"
+        },
+        {
+          "type": "fix"
+        },
+        {
+          "hidden": true
+        },
+        {
+          "type": "chore"
+        },
+        {
+          "hidden": true
+        },
+        {
+          "type": "docs"
+        },
+        {
+          "hidden": true
+        },
+        {
+          "type": "doc"
+        },
+        {
+          "hidden": true
+        },
+        {
+          "type": "style"
+        },
+        {
+          "hidden": true
+        },
+        {
+          "type": "refactor"
+        },
+        {
+          "hidden": true
+        },
+        {
+          "type": "perf"
+        },
+        {
+          "hidden": true
+        },
+        {
+          "type": "test"
+        },
+        {
+          "hidden": true
+        }
+      ],
+      "presetConfig": true
+    }
+  ],
+  "prepare": [
+    {
+      "path": "@semantic-release/git"
+    },
+    {
+      "path": "@semantic-release/changelog",
+      "changelogFile": "docs/CHANGELOG.md"
+    }
+  ],
+  "publish": [
+    {
+      "path": "@semantic-release/github"
+    }
+  ],
+  "success": [
+    "@semantic-release/github"
+  ],
+  "fail": [
+    "@semantic-release/github"
+  ]
+}
